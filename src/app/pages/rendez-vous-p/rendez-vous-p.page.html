@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>rendez-vous-p</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-searchbar [(ngModel)]="term"></ion-searchbar>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list *ngIf="rendezvous">
+    <ion-list-header>
+      List des rendez-vous
+    </ion-list-header>
+
+    <ion-item *ngFor="let rend of rendezvous | filter:term" (click)="detailRendez(rend)" lines="full" >
+      <ion-avatar slot="start">
+        <img src="/assets/images/rendez-vous.png" >
+      </ion-avatar>
+      <ion-label>
+        <h2 style="margin: 0;">{{rend.titre}}</h2>
+        <h3 style="margin: 0;">{{rend.medecin.service.nom}}</h3>
+        <p style="margin: 0;">{{rend.medecin.nom}},{{rend.medecin.prenom}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

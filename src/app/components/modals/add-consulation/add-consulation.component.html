@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Les antécedents familiaux</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dimissModal()" color="primary">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content >
+
+  <ion-card>
+    <mat-card-content>
+      <form class="example-form" [formGroup]="formConsulation">
+        <h3> <b>Contenu du traitement</b></h3>
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Nom de traitement..." formControlName="nomTraitement"></textarea>
+        </mat-form-field>
+
+        <h3> <b>Contenu du traitement</b></h3>
+        <mat-form-field class="example-chip-list" style="width: 100%">
+          <mat-chip-list #chipList aria-label="Fruit selection">
+            <mat-chip *ngFor="let antecedent of getTraitements().controls;let i = index" [selectable]="selectable"
+                      [removable]="removable" (removed)="remove(i)">
+              {{antecedent.value}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input matInput placeholder="Nouveau ..."
+
+                   [matChipInputFor]="chipList"
+                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                   [matChipInputAddOnBlur]="addOnBlur"
+                   (matChipInputTokenEnd)="add($event)">
+          </mat-chip-list>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Rapport</mat-label>
+          <textarea matInput placeholder="Rapport..." formControlName="rapporte"></textarea>
+
+        </mat-form-field>
+        <br>
+
+
+
+        <button type="submit" (click)="onSubmit()" [disabled]="!formConsulation.valid" >
+          <mat-icon>save</mat-icon>
+        </button>
+
+      </form>
+    </mat-card-content>
+  </ion-card>
+
+
+</ion-content>
+

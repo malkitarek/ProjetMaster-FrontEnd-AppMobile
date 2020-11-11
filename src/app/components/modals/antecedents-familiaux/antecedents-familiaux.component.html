@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Les antécedents familiaux</ion-title>
+    <ion-buttons slot="end">
+       <ion-button (click)="dimissModal()" color="primary">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+   <ion-list *ngFor="let ant of antecedentsFamiliaux">
+     <ion-item >
+        <ion-label>{{ant}}</ion-label>
+     </ion-item>
+   </ion-list>
+</ion-content>

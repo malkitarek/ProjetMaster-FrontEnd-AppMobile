@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Médecins traitants</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dimissModal()" color="primary">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-searchbar [(ngModel)]="term"></ion-searchbar>
+  <ion-list >
+    <ion-list-header>
+      List des médecins traitants
+    </ion-list-header>
+
+    <ion-item *ngFor="let mem of medecinsTraitants | filter:term"  lines="full" >
+      <ion-avatar slot="start">
+        <img src="/assets/images/medecin.png" >
+      </ion-avatar>
+      <ion-label>
+        <h2 style="margin: 0;">{{mem.nom}}</h2>
+        <h3 style="margin: 0;">{{mem.prenom}}</h3>
+        <p style="margin: 0;">{{mem.service.nom}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

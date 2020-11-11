@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>medecin</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <ion-list>
+       <ion-item *ngFor="let pro of produits">
+           <ion-label>{{pro.name}}</ion-label>
+       </ion-item>
+   </ion-list>-->
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-searchbar [(ngModel)]="term"></ion-searchbar>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list >
+    <ion-list-header>
+      List des médecins traitants
+    </ion-list-header>
+
+    <ion-item *ngFor="let med of medecins | filter:term" (click)="detailMed(med.id)" lines="full" >
+      <ion-avatar slot="start">
+        <img src="/assets/images/medecin.png" >
+      </ion-avatar>
+      <ion-label>
+        <h3 style="margin: 0;">{{med.nom}}</h3>
+        <h4 style="margin: 0;">{{med.prenom}}</h4>
+        <p style="margin: 0;">{{med.service.nom}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

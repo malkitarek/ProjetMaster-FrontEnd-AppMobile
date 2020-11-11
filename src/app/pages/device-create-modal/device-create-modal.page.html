@@ -1,0 +1,42 @@
+<ion-toolbar color="primary">
+  <ion-buttons slot="start">
+    <ion-button (click)="close()">
+      <ion-icon name="close" slot="icon-only"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-buttons slot="end" *ngIf="device">
+    <ion-button (click)="delete(device.id)">
+      <ion-icon name="trash" slot="icon-only"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-buttons slot="end">
+    <ion-button (click)="save()">
+      <ion-icon name="checkmark" slot="icon-only"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-content>
+  <form [formGroup]="formDevice" >
+
+    <mat-form-field appearance="fill" style="width: 100%" >
+      <mat-label>Nom</mat-label>
+      <input matInput placeholder="Nom de device" formControlName="nom" type="text" required>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill" style="width: 100%">
+      <mat-label>Description</mat-label>
+      <textarea matInput placeholder="Description de device" formControlName="description" type="text" required></textarea>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill" style="width: 100%">
+      <mat-label>Patient</mat-label>
+      <mat-select formControlName="patientId" >
+        <mat-option [value]="pat.id" *ngFor="let pat of patients">{{pat.nom}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="hasError('patientId', 'patientTaken')">patient already has a device</mat-error>
+    </mat-form-field>
+
+
+  </form>
+</ion-content>

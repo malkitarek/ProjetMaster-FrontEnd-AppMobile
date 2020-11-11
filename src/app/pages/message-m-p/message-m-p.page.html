@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>message-m-p</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="user">
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-searchbar [(ngModel)]="term"></ion-searchbar>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+<!---------------------------- list membres d'un medecin --------------------------------------->
+  <ion-list *ngIf="user.appUser.role=='MEDECIN' && membres">
+    <ion-list-header>
+      List des patients
+    </ion-list-header>
+
+    <ion-item *ngFor="let mem of membres | filter:term"  lines="full" (click)="deailMsg(mem.patient.id,mem.patient.nom+','+mem.patient.prenom)">
+        <ion-avatar slot="start">
+        <span style="padding-top:18px"
+              [matBadgeHidden]="mem.h==0"
+              [matBadge]="mem.h"
+              matBadgePosition="after"
+              matBadgeColor="accent">
+        <img src="/assets/images/patientNo.png" >
+        </span>
+        </ion-avatar>
+        <span class="text-small" slot="end">{{mem.created | date: 'd/M/yy, h:mm a'}}</span>
+        <ion-label>
+          <h3 style="margin: 0;">{{mem.patient.nom}},{{mem.patient.prenom}}</h3>
+          <p style="margin: 0;" [ngClass]="mem.readed==null && mem.fromQui != user.appUser.role?'blod':''">{{mem.contenu}}</p>
+        </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <!---------------------------- list medecins traitants  d'un patient --------------------------------------->
+  <ion-list *ngIf="user.appUser.role=='PATIENT' && membres">
+    <ion-list-header>
+      List des Médecins
+    </ion-list-header>
+
+    <ion-item *ngFor="let mem of membres | filter:term"  lines="full" (click)="deailMsg(mem.medecin.id,mem.medecin.nom+','+mem.medecin.prenom)">
+      <ion-avatar slot="start">
+        <span style="padding-top:18px"
+              [matBadgeHidden]="mem.h==0"
+              [matBadge]="mem.h"
+              matBadgePosition="after"
+              matBadgeColor="accent">
+        <img src="/assets/images/medecin.png" >
+        </span>
+      </ion-avatar>
+      <span class="text-small" slot="end">{{mem.created | date: 'd/M/yy, h:mm a'}}</span>
+      <ion-label>
+        <h3 style="margin: 0;">{{mem.medecin.nom}},{{mem.medecin.prenom}}</h3>
+        <p style="margin: 0;" [ngClass]="mem.readed==null && mem.fromQui != user.appUser.role?'blod':''">{{mem.contenu}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

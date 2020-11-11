@@ -1,0 +1,107 @@
+
+
+
+
+<ion-content [fullscreen]="true">
+
+
+  <ion-header collapse="condense" >
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+
+  <div id="container" *ngIf="user">
+    <ion-grid *ngIf="user.appUser.role=='MEDECIN'">
+      <ion-row>
+        <ion-col>
+          <ion-card class="card-color" routerLink="/patients">
+            <img  src="/assets/images/pat.png" >
+            <ion-card-header>
+              <ion-card-title style="color: white">Patients</ion-card-title>
+            </ion-card-header>
+
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card class="card-color" routerLink="/membres">
+            <img  src="/assets/images/pat.png" >
+            <ion-card-header>
+              <ion-card-title style="color: white">Mes Patients</ion-card-title>
+            </ion-card-header>
+
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-card class="card-color" routerLink="/device">
+            <img  src="/assets/images/devices.png" >
+            <ion-card-header>
+              <ion-card-title style="color: white">Devices</ion-card-title>
+            </ion-card-header>
+
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card class="card-color" routerLink="/rendez-vous">
+            <img  src="/assets/images/rendez-vous.png" >
+            <ion-card-header>
+              <ion-card-title style="color: white">Rendes-vous</ion-card-title>
+            </ion-card-header>
+
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+<!--------------------------------------------------PAtient ----------------------------->
+    <ion-grid *ngIf="user.appUser.role=='PATIENT'">
+      <ion-row>
+        <ion-col>
+          <ion-card class="card-color" routerLink="/donnees">
+            <img  src="/assets/images/donnees.png" >
+            <ion-card-header>
+              <ion-card-title style="color: white">Données</ion-card-title>
+            </ion-card-header>
+
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card class="card-color" routerLink="/rendez-vous-p">
+            <img  src="/assets/images/rendez-vous.png" >
+            <ion-card-header>
+              <ion-card-title style="color: white">Rendez Vous</ion-card-title>
+            </ion-card-header>
+
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-card class="card-color" routerLink="/services">
+            <img  src="/assets/images/services.png" >
+            <ion-card-header>
+              <ion-card-title style="color: white">Services</ion-card-title>
+            </ion-card-header>
+
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card class="card-color" routerLink="/medecins">
+            <img  src="/assets/images/doctor.png" >
+            <ion-card-header>
+              <ion-card-title style="color: white">Médecins</ion-card-title>
+            </ion-card-header>
+
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </div>
+</ion-content>

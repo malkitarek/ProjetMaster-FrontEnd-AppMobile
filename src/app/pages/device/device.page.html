@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>device</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="8">
+        <ion-searchbar [(ngModel)]="term"></ion-searchbar>
+      </ion-col>
+      <ion-col size="4">
+        <ion-button color="success" (click)="createDevice()">
+          Ajouter
+          <ion-icon slot="end" name="add-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-list >
+    <ion-list-header>
+      List des devices
+    </ion-list-header>
+
+    <ion-item *ngFor="let dev of devices | filter:term">
+      <ion-icon slot="end" name="eye" color="success" (click)="detailDevice(dev.id)"></ion-icon>
+      <ion-icon slot="end" name="create" color="primary" (click)="updateDevice(dev)"></ion-icon>
+      <ion-avatar slot="start">
+        <img src="/assets/images/device.png">
+      </ion-avatar>
+      <ion-label>
+        <h2 style="margin: 0;">{{dev.nom}}</h2>
+        <h3 style="margin: 0;">{{dev.patient.nom}}</h3>
+        <p style="margin: 0;">{{dev.patient.prenom}}</p>
+
+
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Consultation</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dimissModal()" color="primary">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Rapport</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div [innerHTML]="consultation.rapporte"></div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Traitment({{consultation.traitement.nom}})</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ul *ngFor="let trai of consultation.traitement.contenu">
+        <li>{{trai}}</li>
+      </ul>
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>

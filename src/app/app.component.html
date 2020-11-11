@@ -1,0 +1,78 @@
+<ion-app>
+  <ion-header [translucent]="true" *ngIf="connecter!==null">
+
+    <ion-toolbar>
+      <ion-buttons slot="start" >
+        <ion-menu-button color="white"></ion-menu-button>
+        <img src="/assets/images/logo-dark2.png" width="36" >
+      </ion-buttons>
+      <ion-title>
+        SoinConnect
+      </ion-title>
+      <ion-buttons slot="end">
+        <ion-button routerLink="/notifications">
+          <ion-badge slot="end" color="dark" *ngIf="notifsNoread>0">{{notifsNoread}}</ion-badge>
+            <ion-icon name="notifications" *ngIf="notifIcon==1"></ion-icon>
+          <ion-icon name="notifications-outline" *ngIf="notifIcon==0"></ion-icon>
+
+        </ion-button>
+      </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-button routerLink="/message">
+          <ion-badge slot="end" color="dark" *ngIf="mesgNoReaded>0">{{mesgNoReaded}}</ion-badge>
+          <ion-icon name="chatbubbles" *ngIf="msgIcon==1"></ion-icon>
+          <ion-icon name="chatbubbles-outline" *ngIf="msgIcon==0"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <ion-menu side="start" menuId="first" contentId="content" *ngIf="user && user.appUser.role=='MEDECIN'">
+    <ion-content>
+      <div class="menu-header-bg"></div>
+      <div class="hearder-content" *ngIf="connecter!=null && user">
+        <img src="/assets/images/medecin.png">
+        <ion-label>
+          <h2>{{user.nom}},{{user.prenom}}</h2>
+          <h3>{{user.service.nom}}</h3>
+          <p>{{user.appUser.email}}</p>
+        </ion-label>
+      </div>
+      <ion-list lines="none"  style="margin-top: -20px">
+        <ion-menu-toggle auto-hide="true">
+          <ion-item routerLink="/home"><ion-icon name="home" slot="start"></ion-icon>Home</ion-item>
+          <ion-item routerLink="/patients"><ion-icon name="people" slot="start"></ion-icon>Patients</ion-item>
+          <ion-item routerLink="/membres"><ion-icon name="people" slot="start"></ion-icon>Mes patients</ion-item>
+          <ion-item routerLink="/rendez-vous"><ion-icon name="calendar" slot="start"></ion-icon>Rendez-vous</ion-item>
+          <ion-item routerLink="/device"><ion-icon name="desktop" slot="start"></ion-icon>Devices</ion-item>
+          <ion-item (click)="lougout()"><ion-icon name="exit" slot="start"></ion-icon>Déconnexion</ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+<!-- ---------------------------------Patient-------------------------------------->
+  <ion-menu side="start" menuId="first" contentId="content" *ngIf="user && user.appUser.role=='PATIENT'">
+    <ion-content>
+      <div class="menu-header-bg"></div>
+      <div class="hearder-content" *ngIf="connecter!=null && user">
+        <img src="/assets/images/patient3.jpg">
+        <ion-label>
+          <h2>{{user.nom}},{{user.prenom}}</h2>
+          <p>{{user.appUser.email}}</p>
+        </ion-label>
+      </div>
+      <ion-list lines="none"  style="margin-top: -20px">
+        <ion-menu-toggle auto-hide="true">
+          <ion-item routerLink="/home"><ion-icon name="home" slot="start"></ion-icon>Home</ion-item>
+          <ion-item routerLink="/donnees"><ion-icon name="bar-chart" slot="start"></ion-icon>Données</ion-item>
+          <ion-item routerLink="/rendez-vous-p"><ion-icon name="calendar" slot="start"></ion-icon>Rendez-vous</ion-item>
+          <ion-item routerLink="/services"><ion-icon name="business" slot="start"></ion-icon>Services</ion-item>
+          <ion-item routerLink="/medecins"><ion-icon name="people" slot="start"></ion-icon>Médecins</ion-item>
+          <ion-item (click)="lougout()"><ion-icon name="exit" slot="start"></ion-icon>Déconnexion</ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet Id="content"></ion-router-outlet>
+</ion-app>

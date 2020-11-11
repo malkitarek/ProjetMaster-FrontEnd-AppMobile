@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>patient</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col size="8">
+                <ion-searchbar [(ngModel)]="term"></ion-searchbar>
+            </ion-col>
+            <ion-col size="4">
+                <ion-button color="success" routerLink="/createPatient">
+                    Ajouter
+                    <ion-icon slot="end" name="add-outline"></ion-icon>
+                </ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+  <ion-list >
+    <ion-list-header>
+      List des patients
+    </ion-list-header>
+
+    <ion-item *ngFor="let p of patients | filter:term" (click)="detailPat(p.id)" lines="full" >
+      <ion-avatar slot="start">
+        <img src="/assets/images/patient2.png" >
+      </ion-avatar>
+      <ion-label>
+        <h2 style="margin: 0;">{{p.nom}}</h2>
+        <h3 style="margin: 0;">{{p.prenom}}</h3>
+        <p style="margin: 0;">{{p.appUser.email}},{{p.appUser.phone}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+

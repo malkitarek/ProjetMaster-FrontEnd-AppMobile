@@ -1,0 +1,35 @@
+
+<ion-content >
+    <div class="padding">
+
+        <div class="logo">
+            <!--<ion-icon color="light" name="sunny"></ion-icon>!-->
+            <!-- <ion-icon color="light" name="contact"></ion-icon> -->
+            <!-- <ion-icon color="light" name="cloudy-night"></ion-icon> -->
+            <img src="/assets//images/logo.png">
+        </div>
+
+        <form #form="ngForm" (ngSubmit)="onLogin(form)">
+            <ion-item >
+                <ion-label color="light">Email</ion-label>
+                <ion-input color="light" name="email" type="email" ngModel required placeholder="Adresse email"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label color="light">Mot de passe</ion-label>
+                <ion-input color="light" name="password" type="password"  ngModel required placeholder="Mot de passe"></ion-input>
+            </ion-item>
+
+            <ion-item lines="none">
+                <ion-button color="light" slot="end" fill="clear">Mot de passe oublier ?</ion-button>
+            </ion-item>
+
+            <ion-button color="light" type="submit" expand="block" shape="round" fill="outline" [disabled]="form.invalid">Connexion</ion-button>
+            <br>
+            <ion-button color="tertiary" expand="block" shape="round" routerLink='/register'>Inscription</ion-button>
+        </form>
+
+
+
+    </div>
+</ion-content>

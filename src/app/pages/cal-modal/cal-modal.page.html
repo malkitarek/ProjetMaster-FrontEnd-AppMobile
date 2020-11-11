@@ -1,0 +1,55 @@
+<ion-toolbar color="primary">
+  <ion-buttons slot="start">
+    <ion-button (click)="close()">
+      <ion-icon name="close" slot="icon-only"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+    <ion-buttons slot="end" *ngIf="rendezVous">
+        <ion-button (click)="delete(rendezVous.id)">
+            <ion-icon name="trash" slot="icon-only"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+  <ion-buttons slot="end">
+    <ion-button (click)="save()">
+      <ion-icon name="checkmark" slot="icon-only"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-content>
+  <form [formGroup]="formRendezVous">
+    <mat-form-field appearance="fill" style="width: 100%">
+      <mat-label>Title</mat-label>
+      <input matInput placeholder="Title" formControlName="titre">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="width: 100%">
+      <mat-label>Description</mat-label>
+      <textarea matInput placeholder="Description ..." formControlName="description"></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="fill" style="width: 100%">
+      <mat-label>From</mat-label>
+      <input matInput [ngxMatDatetimePicker]="picker" formControlName="dateDebut">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
+    </mat-form-field>
+    <mat-form-field appearance="fill" style="width: 100%">
+      <input matInput [ngxMatDatetimePicker]="picker2" placeholder="Choose a date" formControlName="dateFin">
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <ngx-mat-datetime-picker #picker2></ngx-mat-datetime-picker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="width: 100%; background-color: white" >
+      <mat-label>Patient</mat-label>
+      <mat-select formControlName="idPatient" >
+        <mat-option *ngFor="let mem of membres" [value]="mem.id" >{{mem.nom}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+      <mat-form-field appearance="fill" style="width: 100%" *ngIf="rendezVous">
+          <mat-label>Validation</mat-label>
+          <input matInput disabled [value]="rendezVous.validation">
+      </mat-form-field>
+  </form>
+
+</ion-content>

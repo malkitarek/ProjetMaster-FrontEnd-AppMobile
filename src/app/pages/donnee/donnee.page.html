@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>donnee</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <mat-selection-list *ngFor="let chanel of chanels">
+    <mat-list-item class="list-group-item list-group-item-action" style="border: none;cursor: pointer"
+                   (click)="getChanelPat(id,chanel.id,chanel.capteur.nom)">
+      <img matListAvatar src="../assets/images/{{chanel.capteur.image}}" alt="user-img"  class="img-circle imageList ">
+      <div mat-line>{{chanel.capteur.nom}}</div>
+      <div mat-line> {{chanel.nom}} </div>
+      <mat-icon class="material-icons-outlined">fast_forward</mat-icon>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+  </mat-selection-list>
+</ion-content>

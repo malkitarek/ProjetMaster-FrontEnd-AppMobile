@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>notifications</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list >
+        <ion-list-header>
+            <b>Notifications</b>
+        </ion-list-header>
+
+        <ion-item *ngFor="let p of notifications | filter:term"  lines="full" (click)="onNotif(p.type)" [ngClass]="p.readed==null?'item-color':''">
+            <ion-avatar slot="start">
+                <img *ngIf="user.appUser.role=='MEDECIN'" src="/assets/images/patientNo.png" style="color: #9d9fa6">
+                <img *ngIf="user.appUser.role=='PATIENT'" src="/assets/images/medecin.png" >
+            </ion-avatar>
+                <h3 style="margin: 0;">{{p.contenu}}</h3>
+        </ion-item>
+    </ion-list>
+</ion-content>

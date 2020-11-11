@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Habitudes toxiques</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dimissModal()" color="primary">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list *ngFor="let hab of habitudesToxiques">
+    <ion-item >
+      <ion-label>{{hab}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
